@@ -15,3 +15,24 @@ public interface ParameterizedType extends Type{
 }
 
 ```
+getActilTypeArguments()获取泛型参数的实际类型，常用于Gson解析
+```
+ public Type getType() {
+
+    Type superClazz = getClass().getGenericSuperclass();
+
+    if (superClazz instanceof ParameterizedType) {
+        Type[] types = ((ParameterizedType) superClazz).getActualTypeArguments();
+        return types[0];
+    } else {
+        return superClazz;
+    }
+
+}
+```
+
+- AbsParameterized
+获取类的泛型参数的实际类型
+
+- Parameterized
+获取方法参数的实际类型
